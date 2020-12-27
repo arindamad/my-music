@@ -67,8 +67,9 @@
             <div class="logo_img">
                 <img src="images/music-note.svg" alt="">
             </div>
-            <div class="logOutPrt" onclick="logOut()">
-                <i class="fas fa-sign-out-alt"></i>
+            <div class="logOutPrt" >
+                <span class="uploadSongs">Upload Songs</span>
+                <i class="fas fa-sign-out-alt" onclick="logOut()"></i>
             </div>
         </section>
         <section class="body">
@@ -80,10 +81,9 @@
 
                 <div class="player">
                     <div class="details">
-                      <div class="now-playing">PLAYING x OF y</div>
-                      <div class="track-art"></div>
-                      <div class="track-name">Track Name</div>
-                      <div class="track-artist">Track Artist</div>
+                      <div class="track-art"></div>                      
+                      <div class="track-name">Unknown</div>
+                      <!-- <div class="track-artist">Track Artist</div> -->
                     </div>
                     <div class="buttons">
                       <div class="prev-track" onclick="prevTrack()"><i class="fa fa-step-backward"></i></div>
@@ -96,7 +96,6 @@
                         <div class="current-time">00:00</div> <span class="devider">/</span>                 
                         <div class="total-duration">00:00</div>
                       </div>
-
                       <div class="volumeSlider">
                         <i class="fa fa-volume-down"></i>
                         <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
@@ -112,8 +111,16 @@
         <section class="footer">
 
         </section>
-        <input type="file" id="uploadFile" accept="audio/mp3,audio/*;capture=microphone">
-        <button class="upLBt">UploadBtn</button>
+        <div class="uploadSongsWrap">
+            <span class="closeUploadWindow"><i class="fa fa-times"></i></span>
+            
+            <div class="dropIdicatate">
+                <input type="file" id="uploadFile" accept="audio/mp3,audio/*;capture=microphone">
+                <h2>Dorp Here</h2>
+                <span>Or Click Here</span>
+            </div>
+        </div>
+        
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

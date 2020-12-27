@@ -87,6 +87,10 @@ let now_playing = document.querySelector(".now-playing");
 
       // Replace icon with the pause icon
       playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-2x"></i>';
+
+      $(".crrently_playing").addClass("active");
+      $(document).find(".crrently_playing img").attr("src", "images/icon/pause.svg");
+
     }
 
     function pauseTrack() {
@@ -94,7 +98,13 @@ let now_playing = document.querySelector(".now-playing");
       isPlaying = false;
 
       // Replace icon with the play icon
-      playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-2x"></i>';;
+      playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-2x"></i>';
+
+    
+      $(".crrently_playing").removeClass("active");
+      $(document).find(".crrently_playing img").attr("src", "images/icon/play.svg");
+
+
     }
 
     function nextTrack() {
@@ -111,6 +121,8 @@ let now_playing = document.querySelector(".now-playing");
       else track_index = track_list.length;
       loadTrack(track_index);
       playTrack();
+
+     
     }
 
     function seekTo() {
@@ -148,29 +160,33 @@ let now_playing = document.querySelector(".now-playing");
     }
 
 $(document).on("click", ".eachPlayerSong", function () {
-    $(this).siblings().removeClass("crrently_playing");
-    $(this).siblings().find("img").attr("src", "images/icon/play.svg");
+    if($(this).hasClass("active")!=true){    
+        $(this).siblings().removeClass("crrently_playing active");
+        $(this).siblings().find("img").attr("src", "images/icon/play.svg");
 
-    var url =  $(this).attr("data-url");
-    loadTrack(track_index, url);
-    playTrack();
-    $(this).addClass("crrently_playing");
-    $(this).find("img").attr("src", "images/icon/pause.svg");
+        var url =  $(this).attr("data-url");
+        loadTrack(track_index, url);
+        playTrack();
+        $(this).addClass("crrently_playing active");
+        $(this).find("img").attr("src", "images/icon/pause.svg");
+        $(".track-name").text($(this).find(".songInfo h6").text());
+    }else{        
+     
+        pauseTrack();
+        
+    }
 })
      
 
 
 
-//     // Load the first track in the tracklist
-//     loadTrack(track_index);
+//for upload files section 
 
-
-
-
-
-
-// foo.start();
-// foo.stop();
-// foo.start();
-// foo.init(100, false);
-// foo.remove();
+$(".closeUploadWindow").on("click", function () {
+  $(this).closest(".uploadSongsWrap").fadeOut();
+});
+$(".uploadSongs").on("click", function () {
+  $(".uploadSongsWrap").fadeIn(function () {
+    $(this).css("display", "flex");
+  });
+});

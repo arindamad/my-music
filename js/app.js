@@ -23,7 +23,7 @@ var concatchs
 var presonId="";
 
 var userId ;
-
+var track_list =[];
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -50,7 +50,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                   <h6>${muyObj.filename}</h6>  
                   <p></p>
                 </div>            
-              </div>`)
+              </div>`);
          
         });
 
@@ -85,6 +85,8 @@ $(".upLBt").on("click", function(){
 $("#uploadFile").on("change", function(e){
   var file = e.target.files[0];
   console.log(file);
+
+  $(".uploadSongsWrap").fadeOut();
   var stroageRef = firebase.storage().ref("mp3/"+file.name);
 
   var task = stroageRef.put(file);
@@ -92,6 +94,7 @@ $("#uploadFile").on("change", function(e){
     function progress(snapshot){
       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log(progress);
+      
     }, 
     function error(err){
       console.log(err)
