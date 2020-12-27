@@ -87,6 +87,8 @@ $("#uploadFile").on("change", function(e){
   console.log(file);
 
   $(".uploadSongsWrap").fadeOut();
+  $(".uploadProgressBar").fadeIn();
+
   var stroageRef = firebase.storage().ref("mp3/"+file.name);
 
   var task = stroageRef.put(file);
@@ -94,6 +96,7 @@ $("#uploadFile").on("change", function(e){
     function progress(snapshot){
       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log(progress);
+      $(".uploadProgressBar span").css("width", progress+"%");
       
     }, 
     function error(err){
@@ -101,6 +104,8 @@ $("#uploadFile").on("change", function(e){
     },
     function complete(complete){
       console.log("complete");
+      $(".uploadProgressBar").fadeOut();
+      
       task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
         // console.log('File available at', downloadURL);
 
