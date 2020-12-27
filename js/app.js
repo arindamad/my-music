@@ -1,29 +1,64 @@
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-var firebaseConfig = {
-    apiKey: "AIzaSyAbRL1Ar-9gfSgGSM42MOiZZiaAVhKpYqU",
-    authDomain: "music-gallery-8177a.firebaseapp.com",
-    databaseURL: "https://music-gallery-8177a-default-rtdb.firebaseio.com",
-    projectId: "music-gallery-8177a",
-    storageBucket: "music-gallery-8177a.appspot.com",
-    messagingSenderId: "300473346960",
-    appId: "1:300473346960:web:6c2e848f3de3c3d172a115",
-    measurementId: "G-WJC5PBQTNR"
-};
-// Initialize Firebase
-var firebase = firebase.initializeApp(firebaseConfig);
+// // Your web app's Firebase configuration
+// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// var firebaseConfig = {
+//   apiKey: "AIzaSyAbRL1Ar-9gfSgGSM42MOiZZiaAVhKpYqU",
+//   authDomain: "music-gallery-8177a.firebaseapp.com",
+//   databaseURL: "https://music-gallery-8177a-default-rtdb.firebaseio.com",
+//   projectId: "music-gallery-8177a",
+//   storageBucket: "music-gallery-8177a.appspot.com",
+//   messagingSenderId: "300473346960",
+//   appId: "1:300473346960:web:6c2e848f3de3c3d172a115",
+//   measurementId: "G-WJC5PBQTNR"
+// };
+// // Initialize Firebase
+// var firebase = firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var db = firebase.database();
 var storageRef = firebase.storage().ref();
 
 
-var presonId = "";
+let arindam ;
+var basePath = "users/";
+var concatchs
+var presonId="";
+
+var userId ;
+
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
-    if(user !=null){
-        console.log(user.uid); 
-        presonId = user.uid; 
+    if(user !=null){      
+        console.log(user.uid, firebase.auth().currentUser.uid); 
+        presonId = user.uid;
+        arindam =  firebase.auth().currentUser.uid;
+        concatchs = basePath.concat(arindam).concat("/")
+        console.log(concatchs)
+
+
+
+        var dbRef = firebase.database().ref(concatchs);
+        dbRef.on('child_added', (data) => {
+            // console.log(data.val());  
+            var muyObj = data.val();        
+         
+              $(".audioLists").append(`<div class="eachPlayerSong" data-url="${muyObj.fileUrl}">
+                <div class="songIcon">
+                  <img src="images/icon/play.svg">
+                </div>
+                <div class="songInfo"> 
+                  <h6>${muyObj.filename}</h6>  
+                  <p></p>
+                </div>            
+              </div>`)
+         
+        });
+
+
+
+
+
+        
     }
   } else {
 
@@ -64,10 +99,10 @@ $("#uploadFile").on("change", function(e){
     function complete(complete){
       console.log("complete");
       task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-        console.log('File available at', downloadURL);
+        // console.log('File available at', downloadURL);
 
 
-        firebase.database().ref("users/"+presonId).push({
+        firebase.database().ref("users/"+presonId+"/").push({
           filename: file.name,
           fileUrl:downloadURL,
           favourite:false
@@ -80,28 +115,9 @@ $("#uploadFile").on("change", function(e){
 
 
 });
-
-var personalId =  firebase.database().ref("users/"+presonId)
-
-personalId.on('child_added', (data) => {
-    console.log(data.val());
-    // makeAudioTag(data.val(), data.key)
-    // console.log(data.val());
- var muyObj = Object.entries(data.val());
- console.log(muyObj)
-    for(var i =0; i<muyObj.length; i++){
-      // console.log(muyObj[0])
-     
-      $(".audioLists").append(`<div>
-        <h6><a>${muyObj[i][1].filename}</a></h6>
-        <audio controls src="${muyObj[i][1].fileUrl}"></audio>
-      </div>`)
-    }
+console.log(concatchs)
 
 
-});
 
 
-function makeAudioTag(val, key){
-    console.log(val.filename);
-} 
+

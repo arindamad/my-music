@@ -1,3 +1,7 @@
+
+
+
+
 var removeClass = (elem,className)=>{
     elem.forEach(function(i){
         i.classList.remove(className);

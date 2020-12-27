@@ -5,13 +5,49 @@
 }
 body{
     background: #e0e0e0;
+    padding-bottom: 100px;
 }
 .totalWrap{
     display: none;
 }
 
+/* //header css start form here  */
+.logo_img{
+    width: 60px;
+}
+.logo_img img{
+    width: 100%;
+    display: block;
+}
+.header{
+    background: #fff;
+    padding: 5px 20px;
+}
+.logOutPrt{
+    font-size: 20px;
+    color: #00ccff;
+    cursor: pointer;
+}
+@media screen and (max-width: 767px){
+  .volumeSlider{
+    display: none;
+  }
+  .slider_container {
+    flex: 1 0 0;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+.player {
+  padding-top: 20px;
+}
+.player .details {
+  flex: 0 0 220px !important;
+}
 
 
+}
 
 
 
@@ -160,4 +196,103 @@ body{
 .welcomeNoneInr h4{
   font-size: 24px;
   margin-bottom: 0;
+}
+
+
+
+/* ///player css start form hrere  */
+.eachPlayerSong{
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 10px;
+  -ms-box-shadow: 1px 6px 10px -4px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 1px 6px 10px -4px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 6px 10px -4px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  margin-top: 16px;
+  border-radius: 4px;
+}
+.eachPlayerSong {
+
+}
+.eachPlayerSong .songIcon{
+  -webkit-flex: 0 0 60px;
+  -ms-flex: 0 0 60px;
+  flex: 0 0 60px;
+
+}
+.eachPlayerSong .songInfo{
+  padding-left: 20px;
+}
+.eachPlayerSong .songInfo h6{
+  /* margin-bottom: 0; */
+}
+
+
+/* //player style .csss */
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  background: #ffffff;
+}
+.buttons{
+  display: flex;
+  align-items: center;
+
+}
+
+/* The slider itself */
+.seek_slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #a5b7bc;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Mouse-over effects */
+.seek_slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.seek_slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 6px; /* Set a specific slider handle width */
+  height: 6px; /* Slider handle height */
+  background: #0099c6; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.seek_slider::-moz-range-thumb {
+  width: 6px; /* Set a specific slider handle width */
+  height: 6px; /* Slider handle height */
+  background: #0099c6; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.player .details{
+  flex: 0 0 300px;
+}
+.playpause-track, .prev-track, .next-track{
+  color: #0099c6;
+}
+.prev-track, .next-track{
+  font-size: 20px;
+}
+.slider_container{
+  flex: 1 0 0;
+  position: relative;
 }

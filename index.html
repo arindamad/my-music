@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -62,12 +63,50 @@
 
     </div>
     <div class="totalWrap">        
-        <section class="header">
-            <h1>Logo</h1>
+        <section class="header d-flex justify-content-between align-items-center">
+            <div class="logo_img">
+                <img src="images/music-note.svg" alt="">
+            </div>
+            <div class="logOutPrt" onclick="logOut()">
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
         </section>
         <section class="body">
             <div class="container">
                 <div class="audioLists"></div>
+
+
+
+
+                <div class="player">
+                    <div class="details">
+                      <div class="now-playing">PLAYING x OF y</div>
+                      <div class="track-art"></div>
+                      <div class="track-name">Track Name</div>
+                      <div class="track-artist">Track Artist</div>
+                    </div>
+                    <div class="buttons">
+                      <div class="prev-track" onclick="prevTrack()"><i class="fa fa-step-backward"></i></div>
+                      <div class="playpause-track" onclick="playpauseTrack()"><i class="fa fa-play-circle fa-2x"></i></div>
+                      <div class="next-track" onclick="nextTrack()"><i class="fa fa-step-forward"></i></div>
+                    </div>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+                      <div class="d-flex">
+                        <div class="current-time">00:00</div> <span class="devider">/</span>                 
+                        <div class="total-duration">00:00</div>
+                      </div>
+
+                      <div class="volumeSlider">
+                        <i class="fa fa-volume-down"></i>
+                        <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+                        <i class="fa fa-volume-up"></i>
+                      </div>
+
+                    </div>
+                  
+                  </div>
+                
             </div>            
         </section>
         <section class="footer">
@@ -85,8 +124,26 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="js/app.js"></script>
+    <script >
+        var firebaseConfig = {
+            apiKey: "AIzaSyAbRL1Ar-9gfSgGSM42MOiZZiaAVhKpYqU",
+            authDomain: "music-gallery-8177a.firebaseapp.com",
+            databaseURL: "https://music-gallery-8177a-default-rtdb.firebaseio.com",
+            projectId: "music-gallery-8177a",
+            storageBucket: "music-gallery-8177a.appspot.com",
+            messagingSenderId: "300473346960",
+            appId: "1:300473346960:web:6c2e848f3de3c3d172a115",
+            measurementId: "G-WJC5PBQTNR"
+        };
+        // Initialize Firebase
+        var firebase = firebase.initializeApp(firebaseConfig);
+    </script>
+
+
     <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/music_player.js"></script>
+    
     
 </body>
 </html>
