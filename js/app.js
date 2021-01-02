@@ -41,14 +41,17 @@ firebase.auth().onAuthStateChanged(function(user) {
         dbRef.on('child_added', (data) => {
             // console.log(data.val());  
             var muyObj = data.val();        
-         
-              $(".audioLists").append(`<div class="eachPlayerSong" data-url="${muyObj.fileUrl}">
+            var playedSong = muyObj.playedSong || 0;
+            var favriteIcon = (muyObj.favourite)? `<i class="fas fa-heart"></i>`: `<i class="far fa-heart"></i>`;
+            var favouritable =  muyObj.favourite; 
+            $(".audioLists").append(`<div class="eachPlayerSong" data-key="${data.key}" data-url="${muyObj.fileUrl}">
                 <div class="songIcon">
                   <img src="images/icon/play.svg">
                 </div>
                 <div class="songInfo"> 
                   <h6>${muyObj.filename}</h6>  
-                  <p></p>
+                  <p>${playedSong} played, Morning</p>
+                  <div class="favouriteSong" favouritable="${favouritable}">${favriteIcon}</div>
                 </div>            
               </div>`);
          
@@ -64,6 +67,32 @@ firebase.auth().onAuthStateChanged(function(user) {
 
   }
 });
+
+
+//favourite song click function 
+$(document).on("click", ".favouriteSong", function () {
+  var getCurrentAuthUid = firebase.auth().currentUser.uid;
+  var getdbKey = $(this).closest(".eachPlayerSong").attr("data-key");
+  var favouriteRef = firebase.database().ref("users/"+getCurrentAuthUid+"/"+getdbKey+"/");
+ 
+  if($(this).attr("favouritable")=="true"){
+    $(this).html(`<i class="far fa-heart"></i>`);
+    alert("Remove form your favourite list");
+    favouriteRef.update({
+      favourite: false
+    });
+    
+  }else{
+    $(this).html(`<i class="fas fa-heart"></i>`);
+    alert("Added to your favourite list");
+    favouriteRef.update({
+      favourite: true
+    });
+
+  }
+  
+})
+
 
 
 

@@ -57,16 +57,7 @@ let now_playing = document.querySelector(".now-playing");
 
     function random_bg_color() {
 
-      // Get a random number between 64 to 256 (for getting lighter colors)
-      let red = Math.floor(Math.random() * 256) + 64;
-      let green = Math.floor(Math.random() * 256) + 64;
-      let blue = Math.floor(Math.random() * 256) + 64;
 
-      // Construct a color withe the given values
-      let bgColor = "rgb(" + red + "," + green + "," + blue + ")";
-
-      // Set the background to that color
-    //   document.body.style.background = bgColor;
     }
 
     // Reset Values
@@ -108,18 +99,26 @@ let now_playing = document.querySelector(".now-playing");
     }
 
     function nextTrack() {
-      if (track_index < track_list.length - 1)
-        track_index += 1;
-      else track_index = 0;
-      loadTrack(track_index);
+      var url = $(".eachPlayerSong.crrently_playing").next().attr("data-url");
+      var getIndex = $(".eachPlayerSong.crrently_playing").index();
+      getIndex++;
+      $(".eachPlayerSong").removeClass("crrently_playing active");
+      $(".eachPlayerSong").eq(getIndex).addClass("crrently_playing active");
+
+      // $(this).removeClass("crrently_playing");
+      loadTrack(track_index, url);
       playTrack();
     }
 
     function prevTrack() {
-      if (track_index > 0)
-        track_index -= 1;
-      else track_index = track_list.length;
-      loadTrack(track_index);
+      var url = $(".eachPlayerSong.crrently_playing").next().attr("data-url");
+      var getIndex = $(".eachPlayerSong.crrently_playing").index();
+      getIndex--;
+      $(".eachPlayerSong").removeClass("crrently_playing active");
+      $(".eachPlayerSong").eq(getIndex).addClass("crrently_playing active");
+
+
+      loadTrack(track_index, url);
       playTrack();
 
      
@@ -159,17 +158,17 @@ let now_playing = document.querySelector(".now-playing");
       }
     }
 
-$(document).on("click", ".eachPlayerSong", function () {
-    if($(this).hasClass("active")!=true){    
-        $(this).siblings().removeClass("crrently_playing active");
-        $(this).siblings().find("img").attr("src", "images/icon/play.svg");
+$(document).on("click", ".eachPlayerSong .songIcon", function () {
+    if($(this).closest(".eachPlayerSong").hasClass("active")!=true){    
+        $(this).closest(".eachPlayerSong").siblings().removeClass("crrently_playing active");
+        $(this).closest(".eachPlayerSong").siblings().find("img").attr("src", "images/icon/play.svg");
 
-        var url =  $(this).attr("data-url");
+        var url =  $(this).closest(".eachPlayerSong").attr("data-url");
         loadTrack(track_index, url);
         playTrack();
-        $(this).addClass("crrently_playing active");
-        $(this).find("img").attr("src", "images/icon/pause.svg");
-        $(".track-name").text($(this).find(".songInfo h6").text());
+        $(this).closest(".eachPlayerSong").addClass("crrently_playing active");
+        $(this).closest(".eachPlayerSong").find("img").attr("src", "images/icon/pause.svg");
+        $(".track-name").text($(this).closest(".eachPlayerSong").find(".songInfo h6").text());
     }else{        
      
         pauseTrack();

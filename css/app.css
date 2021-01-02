@@ -18,6 +18,31 @@ a{
 
 .totalWrap {
   display: none;
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 1;
+}
+.totalWrap::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.52);
+}
+.totalWrap::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../images/dj.jpg) fixed;
+  z-index: -1;
+  background-size: cover;
+  filter: blur(8px);
 }
 
 /* //header css start form here  */
@@ -31,14 +56,17 @@ a{
 }
 
 .header {
-  background: #fff;
+  background: #21242e;
   padding: 5px 20px;
 }
 
 .logOutPrt {
   font-size: 20px;
-  color: #00ccff;
+  color: #6cf2e9;
   cursor: pointer;
+}
+.track-name{
+  color: #fff;
 }
 
 @media screen and (max-width: 767px) {
@@ -55,13 +83,22 @@ a{
   }
 
   .player {
-    padding-top: 20px;
+    padding: 14px 20px 5px;
+
   }
 
   .player .details {
-    flex: 0 0 220px !important;
+    flex: 1 0 0 !important;
   }
-
+  .player .buttons{
+    flex: 0 0 auto;
+  }
+  .playpause-track{
+    font-size: 30px;
+  }
+  .next-track, .prev-track{
+    display: none;
+  }
 
 }
 
@@ -262,9 +299,12 @@ a{
   -ms-box-shadow: 1px 6px 10px -4px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 1px 6px 10px -4px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 6px 10px -4px rgba(0, 0, 0, 0.2);
-  background: #fff;
+  background: rgba(255, 255, 255, 0.24);
+  border: 1px solid  rgba(255, 255, 255, 0.24);
+  /* border: 1px solid #6cf2e9; */
   margin-top: 16px;
   border-radius: 4px;
+  position: relative;
 }
 
 .eachPlayerSong {}
@@ -275,16 +315,39 @@ a{
   flex: 0 0 60px;
 
 }
+.eachPlayerSong .songIcon img{
+  filter: invert(1);
+}
 
 .eachPlayerSong .songInfo {
   padding-left: 20px;
+  flex: 0 0 calc(100% - 80px);
+  max-width: calc(100% - 80px);
 }
 
 .eachPlayerSong .songInfo h6 {
-  /* margin-bottom: 0; */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+  color: #6cf2e9;
 }
-
-
+.eachPlayerSong .songInfo p {
+  font-size: 14px;
+  margin-bottom: 0;
+  color: #f3f3f3;
+}
+.favouriteSong{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #00ccb2;
+  cursor: pointer;
+  font-size: 18px;
+}
+.eachPlayerSong.active .favouriteSong{
+  color: #fff;
+}
 /* //player style .csss */
 .player {
   position: fixed;
@@ -292,7 +355,7 @@ a{
   left: 0;
   width: 100%;
   display: flex;
-  background: #ffffff;
+  background: #21242e;
 }
 
 .buttons {
@@ -332,7 +395,7 @@ a{
   /* Set a specific slider handle width */
   height: 6px;
   /* Slider handle height */
-  background: #0099c6;
+  background: #6cf2e9;
   /* Green background */
   cursor: pointer;
   /* Cursor on hover */
@@ -343,7 +406,7 @@ a{
   /* Set a specific slider handle width */
   height: 6px;
   /* Slider handle height */
-  background: #0099c6;
+  background: #6cf2e9;
   /* Green background */
   cursor: pointer;
   /* Cursor on hover */
@@ -357,7 +420,7 @@ a{
 .playpause-track,
 .prev-track,
 .next-track {
-  color: #0099c6;
+  color:#6cf2e9;
 }
 
 .prev-track,
@@ -371,7 +434,8 @@ a{
 }
 
 .eachPlayerSong.active {
-  background: #39c5be;
+  border: 1px solid #6cf2e9;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .uploadSongs {
