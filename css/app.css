@@ -448,7 +448,7 @@ a{
 
 /* //upload songs  */
 .uploadSongsWrap {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -458,6 +458,7 @@ a{
   align-items: center;
   justify-content: center;
   display: none;
+  padding: 0 30px;
 }
 
 #uploadFile {
@@ -475,10 +476,8 @@ a{
   text-align: center;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid #fff;
-  -webkit-box-flex: 0;
   max-width: 414px;
-  -ms-flex: 0 0 414px;
-  flex: 0 0 414px;
+  width: 100%;
   padding: 20px 30px;
   margin: 0 auto;
   position: relative;
