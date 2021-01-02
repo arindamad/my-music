@@ -10,57 +10,59 @@
 </head>
 <body>
     <div class="authSection">
-        <div class="login-box">
-            <div class="lb-header">
-                <a href="javascript:;" class="active" id="login-box-link" onclick="showLogin(this)">Login</a>
-                <a href="javascript:;" id="signup-box-link" onclick="showSignUp(this)">Sign Up</a>
-            </div>
-            
-            <div class="email-login">
-                <div class="u-form-group">
-                    <input type="email" placeholder="Email" id="logInEmail"/>
+        <div class="authInnerSect">
+            <div class="login-box">
+                <div class="logIngLogo">
+                    <img src="images/music-note.svg" alt="" width="80"> 
+                    <h1>Music Gallery</h1>               
                 </div>
-                <div class="u-form-group">
-                    <input type="password" placeholder="Password" id="logInPass"/>
+                
+                <div class="email-login">
+                    <div class="u-form-group">
+                        <input type="email" placeholder="Email" id="logInEmail"/>
+                    </div>
+                    <div class="u-form-group text-right">
+                        <input type="password" placeholder="Password" id="logInPass"/>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <div class="u-form-group">
+                        <button onclick="logIn()" class="logInButtonar">Log in</button>
+                    </div>
+                    <div class="u-form-group extraLoginBoxlink">
+                        <p>Did not have account <a href="javascript:;" onclick="showSignUp(this)">Sign Up Now</a> </p>  
+                    </div>
                 </div>
-                <div class="u-form-group">
-                    <button onclick="logIn()" class="btn btn-success">Log in</button>
+                <div class="email-signup" style="display: none;">
+                    <div class="u-form-group">
+                        <input type="email" placeholder="Email" id="regEmail" />
+                    </div>
+                    <div class="u-form-group">
+                        <input type="password" placeholder="Password" id="regPass"/>
+                    </div>
+                    <div class="u-form-group">
+                        <input type="password" placeholder="Confirm Password" id="regConfirm"/>
+                    </div>
+                    <div class="u-form-group">
+                        <button onclick="signUp()" class="logInButtonar">Sign Up</button>                   
+                    </div>
+                    <div class="u-form-group extraLoginBoxlink">
+                        <p>Already have an Account <a href="javascript:;" onclick="showLogin(this)">Login</a></p>                    
+                    </div>
                 </div>
-                <div class="u-form-group">
-                    <a href="#" class="forgot-password">Forgot password?</a>
-                </div>
-            </div>
-            <div class="email-signup" style="display: none;">
-                <div class="u-form-group">
-                    <input type="email" placeholder="Email" id="regEmail" />
-                </div>
-                <div class="u-form-group">
-                    <input type="password" placeholder="Password" id="regPass"/>
-                </div>
-                <div class="u-form-group">
-                    <input type="password" placeholder="Confirm Password" id="regConfirm"/>
-                </div>
-                <div class="u-form-group">
-                    <button onclick="signUp()" class="btn btn-success">Sign Up</button>
-                </div>
-            </div>
-            <!-- <div class="social-login">
-                <a href="#">
-                    <i class="fa fa-facebook fa-lg"></i>
-                    Login in with facebook
-                </a>
-                <a onclick="googleLogin()">
-                    <i class="fa fa-google-plus fa-lg"></i>
-                    log in with Google
-                </a>
-            </div> -->
-    
-        </div>
-
-
-
+                <!-- <div class="social-login">
+                    <a href="#">
+                        <i class="fa fa-facebook fa-lg"></i>
+                        Login in with facebook
+                    </a>
+                    <a onclick="googleLogin()">
+                        <i class="fa fa-google-plus fa-lg"></i>
+                        log in with Google
+                    </a>
+                </div> -->
         
+            </div>
 
+        </div>
     </div>
     <div class="totalWrap">        
         <section class="header d-flex justify-content-between align-items-center">
