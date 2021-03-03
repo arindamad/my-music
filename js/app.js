@@ -29,14 +29,10 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     if(user !=null){      
-        console.log(user.uid, firebase.auth().currentUser.uid); 
+        // console.log(user.uid, firebase.auth().currentUser.uid); 
         presonId = user.uid;
         arindam =  firebase.auth().currentUser.uid;
-        concatchs = basePath.concat(arindam).concat("/")
-        console.log(concatchs)
-
-
-
+        concatchs = basePath.concat(arindam).concat("/");
         var dbRef = firebase.database().ref(concatchs);
         dbRef.on('child_added', (data) => {
             // console.log(data.val());  
@@ -44,13 +40,13 @@ firebase.auth().onAuthStateChanged(function(user) {
             var playedSong = muyObj.playedSong || 0;
             var favriteIcon = (muyObj.favourite)? `<i class="fas fa-heart"></i>`: `<i class="far fa-heart"></i>`;
             var favouritable =  muyObj.favourite; 
-            $(".audioLists").append(`<div class="eachPlayerSong" data-key="${data.key}" data-url="${muyObj.fileUrl}">
+            $(".audioLists").append(`<div class="ui-state-default eachPlayerSong" data-key="${data.key}" data-url="${muyObj.fileUrl}">
                 <div class="songIcon">
                   <img src="images/icon/play.svg">
                 </div>
                 <div class="songInfo"> 
                   <h6>${muyObj.filename}</h6>  
-                  <p>${playedSong} played, Morning</p>
+                  <p data-played="${playedSong}">${playedSong} played, Morning</p>
                   <div class="favouriteSong" favouritable="${favouritable}">${favriteIcon}</div>
                 </div>            
               </div>`);
@@ -114,11 +110,12 @@ $(".upLBt").on("click", function(){
 $("#uploadFile").on("change", function(e){
   var file = e.target.files[0];
   console.log(file);
+  var getUid = firebase.auth().currentUser.uid;
 
   $(".uploadSongsWrap").fadeOut();
   $(".uploadProgressBar").fadeIn();
 
-  var stroageRef = firebase.storage().ref("mp3/"+file.name);
+  var stroageRef = firebase.storage().ref("mp3/"+getUid+"/"+file.name);
 
   var task = stroageRef.put(file);
   task.on('state_change', 
@@ -152,9 +149,9 @@ $("#uploadFile").on("change", function(e){
 
 
 });
-console.log(concatchs)
 
 
 
-
+$( "#sortable" ).sortable();
+$( "#sortable" ).disableSelection();
 

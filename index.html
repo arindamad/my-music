@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -78,7 +79,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="audioLists"></div>
+                        <div id="sortable" class="audioLists"></div>
                     </div>
                     <!-- <div class="col-md-6">
                         <h2>Your Play lists</h2>
@@ -133,6 +134,16 @@
         
     </div>
 
+
+    <div class="saveSongDetails_ar" style="display: none;">
+        <div class="pop_container">
+            <!-- i -->
+        </div>
+    </div>
+
+
+
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase.js"></script>
 
@@ -141,6 +152,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
     <script >
         var firebaseConfig = {
             apiKey: "AIzaSyAbRL1Ar-9gfSgGSM42MOiZZiaAVhKpYqU",

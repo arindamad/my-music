@@ -73,7 +73,6 @@ a{
   .volumeSlider {
     display: none;
   }
-
   .slider_container {
     flex: 1 0 0;
     position: absolute !important;
@@ -84,7 +83,7 @@ a{
 
   .player {
     padding: 14px 20px 5px;
-
+    
   }
 
   .player .details {
@@ -356,6 +355,7 @@ a{
   width: 100%;
   display: flex;
   background: #21242e;
+  display: none;
 }
 
 .buttons {

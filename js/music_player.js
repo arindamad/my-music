@@ -51,14 +51,10 @@ let now_playing = document.querySelector(".now-playing");
       // Move to the next track if the current one finishes playing
       curr_track.addEventListener("ended", nextTrack);
 
-      // Apply a random background color
-      random_bg_color();
+      
     }
 
-    function random_bg_color() {
-
-
-    }
+   
 
     // Reset Values
     function resetValues() {
@@ -99,6 +95,21 @@ let now_playing = document.querySelector(".now-playing");
     }
 
     function nextTrack() {
+      var getdbKey2 = $(".crrently_playing.active").attr("data-key");          
+      var getcount =  $(".crrently_playing.active p").attr("data-played");          
+      
+      var getCurrentAuthUid2 = firebase.auth().currentUser.uid;
+      var arRefss  = firebase.database().ref("timeline/"+getCurrentAuthUid2+"/"+getdbKey2+"/");
+      arRefss.push({
+        timeStamp: new Date(),
+        totalPlayMinute: "100"
+      });
+      console.log(arRefss);
+
+
+
+
+
       var url = $(".eachPlayerSong.crrently_playing").next().attr("data-url");
       var getIndex = $(".eachPlayerSong.crrently_playing").index();
       getIndex++;
@@ -140,7 +151,14 @@ let now_playing = document.querySelector(".now-playing");
       if (!isNaN(curr_track.duration)) {
         seekPosition = curr_track.currentTime * (100 / curr_track.duration);
         seek_slider.value = seekPosition;
-
+        if(seekPosition== 2 ){
+         
+          // arRefss.update({
+          //   totalPlayed: getcount,
+          // }, function (params) {
+          //   console.log("success");
+          // });
+        }
         // Calculate the time left and the total duration
         let currentMinutes = Math.floor(curr_track.currentTime / 60);
         let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
@@ -159,6 +177,7 @@ let now_playing = document.querySelector(".now-playing");
     }
 
 $(document).on("click", ".eachPlayerSong .songIcon", function () {
+      $(".player").css('display', 'flex');
     if($(this).closest(".eachPlayerSong").hasClass("active")!=true){    
         $(this).closest(".eachPlayerSong").siblings().removeClass("crrently_playing active");
         $(this).closest(".eachPlayerSong").siblings().find("img").attr("src", "images/icon/play.svg");
